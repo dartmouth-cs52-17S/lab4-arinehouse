@@ -1,15 +1,10 @@
-import $ from 'jquery';
-import './style.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-$('#main').html('You\'ve been on this page for 1 second.');
+const App = () => {
+  return (
+    <div className="test">All the React are belong to us!</div>
+  );
+};
 
-let num = 1;
-
-setInterval(() => {
-  num += 1;
-  if (num >= 60) {
-    $('#main').html(`You've been on this page for ${Math.floor(num / 60)} minutes and ${num % 60} seconds.`);
-  } else {
-    $('#main').html(`You've been on this page for ${num} seconds.`);
-  }
-}, 1000);
+ReactDOM.render(<App />, document.getElementById('main'));
