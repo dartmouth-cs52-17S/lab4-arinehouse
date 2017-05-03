@@ -60,7 +60,10 @@ class Post extends Component {
       this.setState({ cover_urlEditing: false });
       this.props.updatePost(this.props.posts.post._id, { cover_url: this.state.cover_url });
     } else {
-      this.setState({ cover_urlEditing: true });
+      this.setState({
+        cover_url: this.props.posts.post.cover_url,
+        cover_urlEditing: true,
+      });
     }
   }
 
@@ -69,7 +72,10 @@ class Post extends Component {
       this.setState({ titleEditing: false });
       this.props.updatePost(this.props.posts.post._id, { title: this.state.title });
     } else {
-      this.setState({ titleEditing: true });
+      this.setState({
+        title: this.props.posts.post.title,
+        titleEditing: true,
+      });
     }
   }
 
@@ -78,7 +84,10 @@ class Post extends Component {
       this.setState({ contentEditing: false });
       this.props.updatePost(this.props.posts.post._id, { content: this.state.content });
     } else {
-      this.setState({ contentEditing: true });
+      this.setState({
+        content: this.props.posts.post.content,
+        contentEditing: true,
+      });
     }
   }
 
@@ -87,7 +96,10 @@ class Post extends Component {
       this.setState({ tagsEditing: false });
       this.props.updatePost(this.props.posts.post._id, { tags: this.state.tags });
     } else {
-      this.setState({ tagsEditing: true });
+      this.setState({
+        tags: this.props.posts.post.tags,
+        tagsEditing: true,
+      });
     }
   }
 
@@ -102,7 +114,14 @@ class Post extends Component {
   renderCoverUrl() {
     if (this.state.cover_urlEditing) {
       return (
-        <input onChange={this.onCoverUrlChange} onBlur={this.toggleCoverUrl} />
+        <div className="cover-url-edit">
+          <textarea autoFocus className="edit-input" onChange={this.onCoverUrlChange} onBlur={this.toggleCoverUrl} value={this.state.cover_url} />
+          <a href="https://giphy.com" target="_blank" rel="noopener noreferrer"><button className="giphy-link">Need a Gif?</button></a>
+        </div>
+      );
+    } else if (this.props.posts.post.cover_url && this.props.posts.post.cover_url.trim() === '') {
+      return (
+        <button className="fix-empty-button" onClick={this.toggleCoverUrl}>Add a cover url!</button>
       );
     } else {
       return (
@@ -116,7 +135,11 @@ class Post extends Component {
   renderTitle() {
     if (this.state.titleEditing) {
       return (
-        <input onChange={this.onTitleChange} onBlur={this.toggleTitle} />
+        <input autoFocus className="edit-input" onChange={this.onTitleChange} onBlur={this.toggleTitle} value={this.state.title} />
+      );
+    } else if (this.props.posts.post.title && this.props.posts.post.title.trim() === '') {
+      return (
+        <button className="fix-empty-button" onClick={this.toggleTitle}>Add a title!</button>
       );
     } else {
       return (
@@ -130,12 +153,19 @@ class Post extends Component {
   renderContent() {
     if (this.state.contentEditing) {
       return (
-        <input onChange={this.onContentChange} onBlur={this.toggleContent} />
+        <div className="content-edit">
+          <textarea autoFocus className="edit-input" onChange={this.onContentChange} onBlur={this.toggleContent} value={this.state.content} />
+          <p>markdown supported</p>
+        </div>
+      );
+    } else if (this.props.posts.post.content && this.props.posts.post.content.trim() === '') {
+      return (
+        <button className="fix-empty-button" onClick={this.toggleContent}>Add some content!</button>
       );
     } else {
       return (
         <div>
-          <span onClick={this.toggleContent}>{this.props.posts.post.content}</span>
+          <span dangerouslySetInnerHTML={{ __html: marked(this.props.posts.post.content || '') }} onClick={this.toggleContent} />
         </div>
       );
     }
@@ -144,7 +174,11 @@ class Post extends Component {
   renderTags() {
     if (this.state.tagsEditing) {
       return (
-        <input onChange={this.onTagsChange} onBlur={this.toggleTags} />
+        <input autoFocus className="edit-input" onChange={this.onTagsChange} onBlur={this.toggleTags} value={this.state.tags} />
+      );
+    } else if (this.props.posts.post.tags && this.props.posts.post.tags.trim() === '') {
+      return (
+        <button className="fix-empty-button" onClick={this.toggleTags}>Add some #tags!</button>
       );
     } else {
       return (

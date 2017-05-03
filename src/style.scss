@@ -3,16 +3,16 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  background: darken(white, 0.2);
+  font-family: 'Droid Sans', sans-serif;
+  background: darken(white, 5);
 }
 
 .active {
-  background-color: rgb(0, 178, 255);
+  background-color: rgb(0, 138, 198);
 }
 
 nav {
-  background-color: #000000;
+  background-color: rgb(45, 45, 45);
   display: flex;
   align-items: center;
   height: 50px;
@@ -30,7 +30,7 @@ nav {
   .link {
     text-decoration: none;
     color: white;
-    padding: 5px;
+    padding: 15px;
   }
 }
 
@@ -46,13 +46,18 @@ nav {
   color: black;
 }
 
+.general-post:hover {
+  transform: scale(1.05);
+}
+
 .general-post {
-  height: 400px;
+  transition: all .3s ease-in-out;
   margin: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   box-shadow: 3px 3px 10px;
+  background: white;
 
   div {
     margin: 10px;
@@ -63,6 +68,15 @@ nav {
     font-weight: bolder;
     font-size: 15pt;
   }
+}
+
+.edit-input {
+  border: none;
+  border-radius: 5px;
+  font-size: 14pt;
+  padding: 10px;
+  box-shadow: 2px 2px 5px;
+  margin: 10px;
 }
 
 .new-post {
@@ -105,6 +119,14 @@ nav {
     background-color: rgb(182, 0, 0);
   }
 
+  #cover_url {
+    width: 60vw;
+  }
+
+}
+
+.giphy-link {
+  background-color: rgb(0, 178, 255);
 }
 
 .single-post {
@@ -123,9 +145,34 @@ nav {
     width: 150px;
     margin: 10px;
     color: white;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 14pt;
+  }
+
+  .cover-url-edit {
+    display: flex;
+  }
+
+  .content-edit {
+    display: flex;
+    flex-direction: column;
+
+    textarea {
+      margin-bottom: 0;
+    }
+
+    p {
+      font-size: 10pt;
+      text-align: right;
+      margin-right: 20px;
+      font-style: italic;
+    }
+  }
+
+  .fix-empty-button {
+    width: 200px;
+    background-color: rgb(0, 178, 255);
   }
 
   .done {

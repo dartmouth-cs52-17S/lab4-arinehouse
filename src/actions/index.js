@@ -21,7 +21,7 @@ export function fetchPosts() {
 
 export function createPost(post, history) {
   return (dispatch) => {
-    const fields = { title: post.title, contents: post.contents, tags: post.tags, cover_url: post.cover_url };
+    const fields = { title: post.title, content: post.content, tags: post.tags, cover_url: post.cover_url };
     axios.post(`${ROOT_URL}/posts${API_KEY}`, fields).then(() => {
       history.push('/');
     }).catch((error) => {
