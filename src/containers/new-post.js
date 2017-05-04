@@ -12,6 +12,10 @@ class Posts extends Component {
       content: '',
       tags: '',
       cover_url: '',
+      title_red_shadow: false,
+      content_red_shadow: false,
+      tags_red_shadow: false,
+      cover_url_red_shadow: false,
     };
 
     this.onTitleChange = this.onTitleChange.bind(this);
@@ -40,13 +44,31 @@ class Posts extends Component {
 
   onSubmitClicked(event) {
     if (this.state.title === '' || this.state.content === '' || this.state.tags === '' || this.state.cover_url === '') {
-      const redShadow = '2px 2px 10px 0 rgb(182, 0, 0)';
-      const blackShadow = '2px 2px 10px 0 black';
       // Input validation: check if user left any of the fields blank, and make them have a red shadow if they did.
-      document.getElementById('title').style.boxShadow = (this.state.title === '') ? redShadow : blackShadow;
-      document.getElementById('content').style.boxShadow = (this.state.content === '') ? redShadow : blackShadow;
-      document.getElementById('tags').style.boxShadow = (this.state.tags === '') ? redShadow : blackShadow;
-      document.getElementById('cover_url').style.boxShadow = (this.state.cover_url === '') ? redShadow : blackShadow;
+      if (this.state.title === '') {
+        this.setState({ title_red_shadow: true });
+      } else {
+        this.setState({ title_red_shadow: false });
+      }
+
+      if (this.state.content === '') {
+        this.setState({ content_red_shadow: true });
+      } else {
+        this.setState({ content_red_shadow: false });
+      }
+
+      if (this.state.tags === '') {
+        this.setState({ tags_red_shadow: true });
+      } else {
+        this.setState({ tags_red_shadow: false });
+      }
+
+      if (this.state.cover_url === '') {
+        this.setState({ cover_url_red_shadow: true });
+      } else {
+        this.setState({ cover_url_red_shadow: false });
+      }
+
       // Input validation: change the button to an obnoxious red color, displaying the error that all fields are required.
       const button = event.target;
       button.innerHTML = 'YOU MUST CONSTRUCT ADDITIONAL PYLONS';
@@ -69,16 +91,48 @@ class Posts extends Component {
     this.props.history.push('/');
   }
 
+  renderTitleBar() {
+    if (this.state.title_red_shadow) {
+      return (<input id="title" className="red-box" type="text" placeholder="title" onChange={this.onTitleChange} />);
+    } else {
+      return (<input id="title" className="black-box" type="text" placeholder="title" onChange={this.onTitleChange} />);
+    }
+  }
+
+  renderContentBar() {
+    if (this.state.content_red_shadow) {
+      return (<input id="content" className="red-box" type="text" placeholder="content" onChange={this.onContentChange} />);
+    } else {
+      return (<input id="content" className="black-box" type="text" placeholder="content" onChange={this.onContentChange} />);
+    }
+  }
+
+  renderTagsBar() {
+    if (this.state.tags_red_shadow) {
+      return (<input id="tags" className="red-box" type="text" placeholder="tags" onChange={this.onTagsChange} />);
+    } else {
+      return (<input id="tags" className="black-box" type="text" placeholder="tags" onChange={this.onTagsChange} />);
+    }
+  }
+
+  renderCoverUrlBar() {
+    if (this.state.cover_url_red_shadow) {
+      return (<input id="cover_url" className="red-box" type="text" placeholder="cover_url" onChange={this.onCoverUrlChange} />);
+    } else {
+      return (<input id="cover_url" className="black-box" type="text" placeholder="cover_url" onChange={this.onCoverUrlChange} />);
+    }
+  }
+
   render() {
     return (
       <div className="new-post">
         <h1>Create a new post:</h1>
         <div className="inputs">
-          <input id="title" type="text" placeholder="title" onChange={this.onTitleChange} />
-          <input id="content" type="text" placeholder="content" onChange={this.onContentChange} />
-          <input id="tags" type="text" placeholder="tags" onChange={this.onTagsChange} />
+          {this.renderTitleBar()}
+          {this.renderContentBar()}
+          {this.renderTagsBar()}
           <div className="add-a-gif">
-            <input id="cover_url" type="text" placeholder="cover url" onChange={this.onUrlChange} />
+            {this.renderCoverUrlBar()}
             <a href="https://giphy.com" target="_blank" rel="noopener noreferrer"><button className="giphy-link">Need a Gif?</button></a>
           </div>
           <div>
