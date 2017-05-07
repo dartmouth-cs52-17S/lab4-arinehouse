@@ -21,7 +21,7 @@ class Posts extends Component {
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onContentChange = this.onContentChange.bind(this);
     this.onTagsChange = this.onTagsChange.bind(this);
-    this.onUrlChange = this.onUrlChange.bind(this);
+    this.onCoverUrlChange = this.onCoverUrlChange.bind(this);
     this.onSubmitClicked = this.onSubmitClicked.bind(this);
     this.cancelClicked = this.cancelClicked.bind(this);
   }
@@ -38,7 +38,7 @@ class Posts extends Component {
     this.setState({ tags: event.target.value });
   }
 
-  onUrlChange(event) {
+  onCoverUrlChange(event) {
     this.setState({ cover_url: event.target.value });
   }
 
