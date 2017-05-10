@@ -26,7 +26,7 @@ class Posts extends Component {
         <div id="post-display">
           {this.props.posts.all.map((post) => {
             return (
-              <Link to={`/posts/${post.id}`} className="post-link">
+              <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
                 <div className="general-post">
                   <div dangerouslySetInnerHTML={{ __html: marked(`![](${post.cover_url})` || '') }} />
                   <div className="title">{post.title}</div>
