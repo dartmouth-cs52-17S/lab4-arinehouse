@@ -35,6 +35,20 @@ nav {
     list-style-type: none;
   }
 
+  .navbar-left {
+    display: flex;
+  }
+
+  .navbar-right {
+    display: flex;
+  }
+
+  #signup {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
   .link {
     text-decoration: none;
     color: white;
@@ -87,6 +101,24 @@ nav {
   margin: 10px;
 }
 
+input {
+  border: none;
+  border-radius: 5px;
+  font-size: 14pt;
+  padding: 10px;
+  margin: 10px;
+}
+
+.signout {
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Droid Sans', sans-serif;
+  color: white;
+  font-size: 12pt;
+}
+
 .new-post {
 
   h1 {
@@ -96,14 +128,6 @@ nav {
   .inputs {
     display: flex;
     flex-direction: column;
-  }
-
-  input {
-    border: none;
-    border-radius: 5px;
-    font-size: 14pt;
-    padding: 10px;
-    margin: 10px;
   }
 
   button {

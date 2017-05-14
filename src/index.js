@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import Posts from './containers/posts';
 import NewPost from './containers/new-post';
 import Post from './containers/post';
-
+import SignIn from './containers/sign-in';
+import SignUp from './containers/sign-up';
+import { ActionTypes } from './actions';
+import Nav from './containers/nav';
+import RequireAuth from './containers/requireAuth';
 import reducers from './reducers';
 
 import './style.scss';
@@ -18,16 +22,10 @@ const store = createStore(reducers, {}, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f,
 ));
 
-const Nav = (props) => {
-  return (
-    <nav>
-      <ul>
-        <li><NavLink className="link" exact to="/">Home</NavLink></li>
-        <li><NavLink className="link" to="/posts/new">New Post</NavLink></li>
-      </ul>
-    </nav>
-  );
-};
+const token = localStorage.getItem('token');
+if (token) {
+  store.dispatch({ type: ActionTypes.AUTH_USER });
+}
 
 const App = (props) => {
   return (
@@ -36,8 +34,10 @@ const App = (props) => {
         <Nav />
         <Switch>
           <Route exact path="/" component={Posts} />
-          <Route path="/posts/new" component={NewPost} />
+          <Route path="/posts/new" component={RequireAuth(NewPost)} />
           <Route path="/posts/:id" component={Post} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
           <Route render={() => (<div>post not found </div>)} />
         </Switch>
       </div>

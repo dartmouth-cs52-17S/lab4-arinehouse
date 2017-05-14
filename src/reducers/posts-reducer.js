@@ -8,15 +8,11 @@ const initialState = {
 const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_POSTS:
-      return {
-        all: action.payload.data,
-      };
+      return Object.assign({}, state, { all: action.payload.data });
     case ActionTypes.FETCH_POST:
-      return {
-        post: action.payload.data,
-      };
+      return Object.assign({}, state, { post: action.payload.data });
     default:
-      return initialState;
+      return state;
   }
 };
 

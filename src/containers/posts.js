@@ -17,6 +17,20 @@ class Posts extends Component {
     this.props.fetchPosts();
   }
 
+  renderPosts() {
+    return this.props.posts.all.map((post) => {
+      return (
+        <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
+          <div className="general-post">
+            <div dangerouslySetInnerHTML={{ __html: marked(`![](${post.cover_url})` || '') }} />
+            <div className="title">{post.title}</div>
+            <div>{post.tags}</div>
+            <div>By {post.author.username}</div>
+          </div>
+        </Link>
+      );
+    });
+  }
 
   render() {
     if (this.props.posts.all == null) {
@@ -24,17 +38,7 @@ class Posts extends Component {
     } else {
       return (
         <div id="post-display">
-          {this.props.posts.all.map((post) => {
-            return (
-              <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
-                <div className="general-post">
-                  <div dangerouslySetInnerHTML={{ __html: marked(`![](${post.cover_url})` || '') }} />
-                  <div className="title">{post.title}</div>
-                  <div>{post.tags}</div>
-                </div>
-              </Link>
-            );
-          })}
+          {this.renderPosts()}
         </div>
       );
     }
