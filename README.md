@@ -1,12 +1,18 @@
-# lab4-arinehouse
+# lab5-arinehouse
+## Redux Blog Part 2: Authentication (Frontend)
 
-## What I Did
-I made a blog! It interacts with the redux store and pull in the changes from there, and it routes to different pages pretty gracefully. Looking forward to some secure backend so that Tyler Burnam and Jason don't try to hack me again.
+# Links
+* [Lab 5](https://github.com/dartmouth-cs52-17S/lab5-arinehouse) GitHub repo
+* [Heroku](https://redux-blog-backend.herokuapp.com/) Instance
+* [Lab 4](https://github.com/dartmouth-cs52-17S/lab4-arinehouse) GitHub repo (that's this one!)
+* [Lab 4](https://redux-blog.surge.sh) Blog Site
 
-## What Worked / What Didn't Work
-On input validation, I thought to myself, "Hmm, there's no way to manipulate the styling without directly poking the DOM." Well that was my bad, and it was a big headache refactoring everything to do something as simple as just change a class to affect the color of the box shadow. Oh well, it works now, and it's all react-friendly, don't worry.
 
-## Extra Credit Attempted
-I went for the input validation, in two separate spots. In the new-post component, if you don't fill in every field, you'll get an error and the input fields will have their box shadows change color to red if you haven't filled it in. If you correct one but not all, only the unfilled ones will stay red.
+# What I Did
+Added authentication to the website, after enough struggling and help from TAs. The lab was deceptively lengthy. It seemed at the beginning to be more like a short assignment, with most of the code provided. There was a lot provided, but there was also a lot to write and understand.
 
-In the edit-post area, if you accidentally create a title or content or whatever as just whitespace (which would normally cause the div to disappear and forever make you unable to edit it), a button pops up telling you to add back that component. This time, though, you can be done with the post editing, and leave the field blank. That button to fix the error will still be there when you get back!
+# What Worked/What Didn't
+It was, at times, incredibly difficult to understand what the issues were with authentication. There were a ton of files and a lot of tracing involved, and it's going to take a lot more practice with authentication before I actually start to feel comfortable with it. For example, getting the username to work involved figuring out why the author field was undefined, which had to be traced back through multiple files until I realized the author object was being returned as a string object that looked like JSON (and I'm still not exactly sure why that was happening).
+
+# Extra Credit
+None. Sorry to disappoint again. :sob:
