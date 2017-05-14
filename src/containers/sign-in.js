@@ -28,11 +28,14 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div>
-        <input onChange={this.onEmailChange} placeholder="email" />
-        <input onChange={this.onPasswordChange} placeholder="password" />
-        <button onClick={this.onSubmitClicked}>Sign In</button>
-        <p>New to Redux Blog? <Link to="/signup">Sign Up!</Link></p>
+      <div className="container">
+        <div className="inputForm">
+          <p>Sign In:</p>
+          <input className="black-box" onChange={this.onEmailChange} placeholder="email" />
+          <input className="black-box" onChange={this.onPasswordChange} placeholder="password" />
+          <button className="done" onClick={this.onSubmitClicked}>Sign In</button>
+        </div>
+        <p>New to Redux Blog? <Link to="/signup" className="authlink">Sign Up!</Link></p>
       </div>
     );
   }

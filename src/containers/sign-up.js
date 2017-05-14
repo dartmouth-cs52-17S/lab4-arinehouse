@@ -33,12 +33,15 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div>
-        <input onChange={this.onEmailChange} placeholder="email" />
-        <input onChange={this.onPasswordChange} placeholder="password" />
-        <input onChange={this.onUsernameChange} placeholder="username" />
-        <button onClick={this.onSubmitClicked}>Sign Up!</button>
-        <p>Already an existing user? <Link to="/signin">Sign in!</Link></p>
+      <div className="container">
+        <div className="inputForm">
+          <p>Sign Up:</p>
+          <input className="black-box" onChange={this.onEmailChange} placeholder="email" />
+          <input className="black-box" onChange={this.onPasswordChange} placeholder="password" />
+          <input className="black-box" onChange={this.onUsernameChange} placeholder="username" />
+          <button className="done" onClick={this.onSubmitClicked}>Sign Up!</button>
+        </div>
+        <p>Already an existing user? <Link to="/signin" className="authlink">Sign in!</Link></p>
       </div>
     );
   }
