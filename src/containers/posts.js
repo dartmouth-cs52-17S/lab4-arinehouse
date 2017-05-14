@@ -19,16 +19,28 @@ class Posts extends Component {
 
   renderPosts() {
     return this.props.posts.all.map((post) => {
-      return (
-        <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
-          <div className="general-post">
-            <div dangerouslySetInnerHTML={{ __html: marked(`![](${post.cover_url})` || '') }} />
-            <div className="title">{post.title}</div>
-            <div>{post.tags}</div>
-            <div>By {post.author.username}</div>
-          </div>
-        </Link>
-      );
+      if (!post.author) {
+        return (
+          <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
+            <div className="general-post">
+              <div dangerouslySetInnerHTML={{ __html: marked(`![](${post.cover_url})` || '') }} />
+              <div className="title">{post.title}</div>
+              <div>{post.tags}</div>
+            </div>
+          </Link>
+        );
+      } else {
+        return (
+          <Link to={`/posts/${post.id}`} className="post-link" key={post.id}>
+            <div className="general-post">
+              <div dangerouslySetInnerHTML={{ __html: marked(`![](${post.cover_url})` || '') }} />
+              <div className="title">{post.title}</div>
+              <div>{post.tags}</div>
+              <div>By {post.author.username}</div>
+            </div>
+          </Link>
+        );
+      }
     });
   }
 
